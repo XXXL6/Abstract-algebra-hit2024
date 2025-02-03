@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\title{近世代数与数理逻辑作业}
+\author{wh\\\vspace{1em}2023111xxx}
+\date{2024-12-14}
+
+\pagestyle{fancy}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\fancyhead[C]{哈尔滨工业大学}
+\fancyhead[R]{\leftmark}
+\cfoot{\thepage}
+
+\setlength{\headheight}{15pt}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\renewcommand{\thefootnote}{\roman{footnote}}
+
+% 第一讲
+\newpage
+\setcounter{page}{1}
+\section{若干基本概念}
+\noindent 练习1  
+\footnote{题目为讲义第一讲“若干基本概念”的练习1}
+
+证明:以下用数学归纳法证明n个确定元素按照任意次序,任意加括号,所得到的乘积都等于
+$a_1\circ a_2\circ \cdots \circ a_n $
+,施归纳于n。
+
+当n=1,2时,由二元代数运算“$\circ$”满足结合律和交换律，结论显然成立。
+
+假设当n=k-1时,结论成立,往证n=k时结论成立。(k>3)
+
+现对于n个无次序的元素$a_{i_1},a_{i_2},\cdots,a_{i_n}\in S$,假设其中$i_r=n$,即$a_{i_r}=a_n$,则有:
+\begin{equation*}
+\begin{split}
+&\hspace{1.5em}a_{i_1}\circ a_{i_2}\circ \cdots \circ a_{i_n}\\ 
+&=(a{i_1}\circ a_{i_2}\circ \cdots a_{i_{r-1}})\circ (a_{i_r}\circ(a_{i_{r+1}}\circ \cdots \circ a{i_n})) \hspace{1.5em}\text{(结合律,可任意加括号)}\\
+&=(a{i_1}\circ a_{i_2}\circ \cdots a_{i_{r-1}})\circ ((a_{i_{r+1}}\circ \cdots \circ a_{i_n})\circ a_{i_r}) \hspace{1.5em}\text{(交换律)} \\
+&=((a{i_1}\circ a_{i_2}\circ \cdots a_{i_{r-1}})\circ (a_{i_{r+1}}\circ \cdots \circ a_{i_n}))\circ a_n \hspace{1.5em}\text{(交换律,$a_{i_r}=a_n$)}\\
+&=(a{i_1}\circ a_{i_2}\circ \cdots a_{i_{r-1}}\circ a_{i_{r+1}}\circ \cdots \circ a_{i_n})\circ a_n\\
+&=(a_1\circ a_2\circ \cdots a_{n-1})\circ a_n \hspace{11em}\text{(由假设得)}\\
+&=a_1\circ a_2\circ \cdots a_{n-1} \circ a_n\\
+\end{split}    
+\end{equation*}
+
+综上,n=k时结论也成立,归纳推理完毕，命题正确。
+
+% 第二讲
+\newpage
+\section{半群、幺半群与群}
+\noindent 练习4:证明有限半群中一定有一个元素a使得$a\circ a=a$。
+
+证明:取有限半群G中的任一元素a,令集合$A={a,a^2,a^3,\cdots ,a^{(n+1)}}$,其中n=|G|.
+
+由抽屉原理可知,必存在$a^i=a^j$且i<j,令d=j-i,\\
+(1)若i<d,则\[a^d=a^i\circ a^{d-i}=a^j\circ a^{d-i}=a^{j+d-i}=a^{2d}\]由此可见,$a^d$为G中的幂等元素.\\
+(2)若i>d,由$a^i=a^{i+d}=a^{i+2d}=\cdots$,故必然存在$m\in N$,使md>i,则类比(1),有
+\[a^{md}=a^{mi}\circ a^{md-mi}=a^{m(d+j-i)}=a^{2md}\]
+由此可见，$a^{md}$为G中的幂等元素.
+
+综上,有限半群G中一定存在一个元素a使得$a\circ a=a$,
+
+
+
+
+
+
+% 第三讲
+\newpage
+\section{群的简单性质}
+\noindent 练习5:设G为群,如果$\forall a\in G,a^2=e$,试证:G为交换群。
+
+证明:由G为群,则$\forall a,b\in G$,有$ab \in G$,故(ab)(ab)=e,
+\begin{equation*}
+\begin{split}
+abab&=e\hspace{1.5em}\text{(结合律,可任意去括号)}\\
+bab&=a\hspace{1.5em}\text{(等号两边同时左乘一个a)}\\
+ab&=ba\hspace{1.1em}\text{(等号两边同时左乘一个b)}
+\end{split}
+\end{equation*}
+
+故群G对其运算满足交换律,G为交换群. 
+
+
+% 第四讲
+\newpage
+\section{子群,生成子群}
+\noindent 练习4:找出3次对称群中的所有子群。
+
+解:三次对称群:\footnote{以下均采用不交轮换的分解式这一表示方式来表示置换}
+\[S_3=\{(1),(1,2),(1,3),(2,3),(1,2,3),(1,3,2)\}\]
+平凡子群:
+\begin{center}
+$S_3$,\\
+\{(1)\}\\
+\end{center}
+真子群:
+\begin{center}
+\{(1),(1,2)\},\\
+\{(1),(1,3)\},\\
+\{(1),(2,3)\},\\
+$A_3\footnote{该子群为3次交代群}$=\{(1),(1,2,3),(1,3,2)\}
+\end{center}
+% 第五讲
+\newpage
+\section{变换群,同构}
+\noindent 练习3
+\footnote{题目为讲义第五讲“变换群,同构”的练习3}
+
+证明:要证明$\varphi $是同构,只需证以下两个命题成立.\\
+1.$\varphi$是一个双射.
+
+由$\varphi(x)=\log _p x$,且p为正数,显然,$\varphi$是一个双射.\\
+2.$\varphi$是同态函数,即$\forall a,b\in R_+,\varphi(a\times b)=\varphi(a) + \varphi(b)$.
+
+\[\varphi(a\times b)=\log _p (a\times b)=\log _p a+\log _p b=\varphi(a)+\varphi(b)\]
+
+故$\varphi$是同态函数.
+
+综上,$\varphi$是同构.
+
+% 第六讲
+\newpage
+\section{循环群}
+\noindent 练习3:设G=(a)为一个n阶循环群。证明:如果(r,n)=1,则$(a^r)=G$。
+
+证明:
+由(r,n)=1,$\exists u,v\in \mathbf{Z} ,s.t.un+rv=1$,设e为G的单位元
+\[
+a=a^{un+rv}=(a^n)^u\cdot (a^r)^v=\footnote{由于G是一个n阶循环群,故有$a^n=e$}e\cdot (a^r)^v=(a^r)^v
+\]
+即$a=(a^r)^v$,则G的生成元a可由$a^r$生成,从而$(a)\subseteq (a^r)$,即$G\subseteq (a^r)$,又$(a^r)\subseteq G$,所以$(a^r)=G$
+% 第七讲
+\newpage
+\section{子群的陪集}
+\noindent 练习2:设p为一个素数,证明:在阶为$p^m$的群里一定含有一个p阶子群,其中$m\geq 1$。
+
+证明:
+设$(G,\circ )$为群,$|G|=p^m$,取$a\in G(a\neq e)$,设其阶为r,则r|$p^m$,由p为素数得,$r=p^k,k\geq 1$.
+
+(1)若k=1,则群G的一个p阶子群为H=(a).
+
+(2)若k>1,取$b=a^{p^{k-1}} \in G$,设b的阶为q,则$b^q=e$.由$b^{p}=(a^{p^{k-1}})^p=a^{p^{k}}=e$,由元素阶的性质,q|p,又$b^q=(a^{p^{k-1}})^q=a^{qp^{k-1}}=e$,则有$r|qp^{k-1}$,即:$p^k|qp^{k-1}$,从而p|q.\\
+综上,由p|q且q|p,得p=q.此时群G的一个p阶子群为H=(b).
+
+命题得证。
+% 第八讲
+\newpage
+\section{正规子群,商群}
+\noindent 练习5:证明两个正规子群的交还是正规子群。
+
+证明:
+设$H_1,H_2$为群G的两个正规子群,记$H=H_1\cap H_2$.则对$\forall a\in G,h\in H,$由$H_1,H_2$为群G的两个正规子群,可得:$aha^{-1} \in H_1,aha^{-1}\in H_2,$所以,$aha^{-1} \in H_1\cap H_2,$即$aha^{-1}\in H$,故H是G的正规子群.
+% 第九讲
+\newpage
+\section{同态基本定理}
+\noindent 练习2:设G为一个循环群,H为群G的子群,试证:G/H也为循环群。
+
+证明:
+设G=(a),由H为循环群(可交换群)的子群,故H为正规子群.且H为商群G/H的单位元,故对$\forall bH \in G/H(b \in G),bH=a^kH=(aH)^k$,因此G/H=(aH).
+
+\newpage
+\section{数理逻辑1}
+\noindent 证明$\vdash(A\to \lnot A)\rightarrow \lnot A$ .\\
+证明:\\
+(1)$A\to (\lnot A\to \lnot (A\to \lnot A))$\hspace{1.5em}定理3.1.3\\
+(2)$(A \to (\lnot A \to \lnot(A \to \lnot A))) \to ((A \to \lnot A) \to (A \to \lnot (\lnot A \to A)))$\hspace{1.5em}A2\\
+(3)${(A \to \lnot A) \to (A \to \lnot (\lnot A \to A))}$\hspace{1.5em}(1)(2)$r_{mp}$\\
+(4)$(A \to \lnot(A \to \lnot A))\to ((A \to \lnot A) \to A)$\hspace{1.5em}A3\\
+(5)$(A \to \lnot A)\to ((A \to \lnot A)\to \lnot A)$\hspace{1.5em}(3)(4)定理3.1.7$r_{mp}$\\
+(6)$((A \to \lnot A)\to (A \to \lnot A))\to ((A\to \lnot A)\to \lnot A)$\hspace{1.5em}(5)A2$r_{0mp}$\\
+(7)$(A \to \lnot A)\to (A\to \lnot A)$\hspace{1.5em}定理3.1.1\\
+(8)$(A \to \lnot A)\to \lnot A$\hspace{1.5em}(6)(7)$r_{mp}$\\
+
+
+\newpage
+\section{数理逻辑2}
+\noindent 形式化自然语句“我为且仅为那些部位自己理发的人理发。”\\
+答:令x的论域为全总个体域,
+
+谓词P(x):x是理发师,
+
+谓词Q(x,y):x为y理发.
+
+\[\exists x(P(x)\wedge \forall y(Q(x,y)\leftrightarrow \lnot Q(y,y)))\]
+
+
+
+\end{document}
